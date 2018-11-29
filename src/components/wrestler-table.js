@@ -37,8 +37,8 @@ const wrestlerData = [
       weight: ['158', '155', '155']
     },
     results: [
-      ['10', '11', '15'],
-      ['20', '22', '18']
+      ['10', '8', '14'],
+      ['20', '22', '20']
     ],
     shots: {
     'low ankle': 3,
@@ -80,7 +80,7 @@ wrestlerInfo = () => {
     console.log(wrestler.results);
     return (
       <tr>
-        <td>{wrestler.attributes.weight} {wrestler.info.name}</td>
+        <td>{wrestler.attributes.weight[wrestler.attributes.weight.length - 1]} {wrestler.info.name}</td>
         {getResults(wrestler.results)}
       </tr>
     )
