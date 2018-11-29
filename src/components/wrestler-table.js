@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Col, Row } from 'react-materialize'
+import { Table, Col, Row, Icon } from 'react-materialize'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { load } from '../actions'
@@ -14,7 +14,7 @@ const wrestlerData = [
     attributes: {
       grade: '12',
       height: "5'10",
-      weight: ['190', '183', '185']
+      weights: ['190', '183', '185']
     },
     results: [
       ['10', '11', '15'],
@@ -34,7 +34,7 @@ const wrestlerData = [
     },
     attributes: {
       height: "5'9",
-      weight: ['158', '155', '155']
+      weights: ['158', '155', '155']
     },
     results: [
       ['10', '8', '14'],
@@ -53,7 +53,6 @@ const headerData = [
 ]
 
 const getResults = results => {
-  console.log(results);
   return results.map( result => {
     return (
       <td> {result[result.length - 1]} </td>
@@ -74,13 +73,9 @@ tableHeader = () => {
 
 wrestlerInfo = () => {
   return  wrestlerData.map( wrestler => {
-    console.log(wrestler);
-    console.log(wrestler.info.name);
-    console.log(wrestler.attributes.weight);
-    console.log(wrestler.results);
     return (
       <tr>
-        <td>{wrestler.attributes.weight[wrestler.attributes.weight.length - 1]} {wrestler.info.name}</td>
+        <td> {wrestler.attributes.weights[wrestler.attributes.weights.length - 1]} </td>
         {getResults(wrestler.results)}
       </tr>
     )
