@@ -7,9 +7,6 @@ import { createAthlete, submitAthlete } from '../actions'
 
 class CreateAthlete extends Component {
 
-  //create object with school
-
-
   render() {
     const { createAthlete, submitAthlete, currentAthlete } = this.props
     return (

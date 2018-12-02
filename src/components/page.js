@@ -13,16 +13,6 @@ class Page extends Component {
       <Row className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p onClick={() => load()}>
-            click here
-          </p>
-          {loaded ?
-            <div>
-              Got it!!!
-            </div> :
-            null
-          }
-
         </header>
       </Row>
     )

@@ -7,9 +7,6 @@ import Modal from './opponent-modal'
 
 class CurrentAthlete extends Component {
 
-  //create object with school
-
-
   render() {
     const { info } = this.props.currentAthlete
     return (

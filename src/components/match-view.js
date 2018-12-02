@@ -3,7 +3,7 @@ import { Row, Col, Button, Table } from 'react-materialize'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Modal from './opponent-modal'
-
+import Clock from './clock'
 
 class MatchView extends Component {
 
@@ -19,6 +19,13 @@ class MatchView extends Component {
         </tr>
       )
     })
+  }
+
+
+  clock() {
+    let timer = 0.00
+
+    return timer
   }
 
   render() {
@@ -47,7 +54,17 @@ class MatchView extends Component {
             </tbody>
           </Table>
         </Col>
-        <Col l={4}>
+        <Col l={6}>
+          <Row>
+            <Col l={12} className="center-align">
+              <Clock/>
+            </Col>
+          </Row>
+          <Row>
+
+          </Row>
+        </Col>
+        <Col l={6}>
           <Row>
             <Col l={3}></Col>
             <Col l={3}>hello</Col>
