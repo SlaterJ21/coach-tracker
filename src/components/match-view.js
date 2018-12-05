@@ -29,7 +29,7 @@ class MatchView extends Component {
   }
 
   render() {
-    const { info, matches } = this.props.currentAthlete
+    const { matches } = this.props.currentAthlete
     let currentMatch = matches[matches.length - 1]
     console.log(currentMatch);
 
@@ -55,14 +55,9 @@ class MatchView extends Component {
           </Table>
         </Col>
         <Col l={6}>
-          <Row>
-            <Col l={12} className="center-align">
-              <Clock/>
-            </Col>
-          </Row>
-          <Row>
-
-          </Row>
+        <Col l={12} className="center-align">
+          <Clock/>
+        </Col> 
         </Col>
         <Col l={6}>
           <Row>

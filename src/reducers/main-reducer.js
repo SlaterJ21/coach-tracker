@@ -44,11 +44,12 @@ class Match {
 }
 
 class Score {
-  constructor(takedowns = [], escapes = [], reversals = [], backpoints = []){
+  constructor(takedowns = [], escapes = [], reversals = [], nearfall = [], pin = []){
     this.takedowns = takedowns;
     this.escapes = escapes;
     this.reversals = reversals;
-    this.backpoints = backpoints;
+    this.nearfall = nearfall;
+    this.pin = pin;
   }
   addTakedown(type, timeStamp){
     this.takedowns.push([type, timeStamp])
@@ -59,8 +60,11 @@ class Score {
   addReversal(type, timeStamp){
     this.reversals.push([type, timeStamp])
   }
-  addBackPoints(type, timeStamp, points){
-    this.backpoints.push([type, points, timeStamp])
+  addNearFall(type, timeStamp, points){
+    this.nearfall.push([type, points, timeStamp])
+  }
+  addPin(type, timeStamp){
+    this.pin.push([type, timeStamp])
   }
 }
 

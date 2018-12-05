@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button } from 'react-materialize'
 
 const formattedSeconds = (sec) =>
   Math.floor(sec / 60) +
@@ -12,21 +13,40 @@ export default class Stopwatch extends Component {
     this.state = {
       secondsElapsed: 0,
       laps: [],
-      lastClearedIncrementer: null
+      lastClearedIncrementer: null,
+      periods: ['First', 'Second', 'Third', 'OT 1', 'OT 2'],
+      periodLengths: [120, 120, 120, 60, 60],
+      period: 0
     };
     this.incrementer = null;
   }
 
+//make timer reset after 120 seconds increment counter to increase period!
+
+  nextPeriod() {
+    if (this.state.secondsElapsed === this.state.periodLengths[this.state.period]) {
+      clearInterval(this.incrementer);
+      this.setState({
+        lastClearedIncrementer: this.incrementer,
+        secondsElapsed: 0,
+        period: this.state.period + 1
+      })
+    }
+  }
+
+
   handleStartClick() {
     this.incrementer = setInterval( () =>
-      this.setState({
-        secondsElapsed: this.state.secondsElapsed + 1
-      })
-    , 1000);
+        this.setState({
+          secondsElapsed: this.state.secondsElapsed + 1
+        })
+      , 1000);
+    setInterval(() => this.nextPeriod(), 1000)
   }
 
   handleStopClick() {
     clearInterval(this.incrementer);
+    clearInterval(this.nextPeriod);
     this.setState({
       lastClearedIncrementer: this.incrementer
     });
@@ -40,7 +60,7 @@ export default class Stopwatch extends Component {
     });
   }
 
-  handleLabClick() {
+  handleLapClick() {
     this.setState({
       laps: this.state.laps.concat([this.state.secondsElapsed])
     })
@@ -49,6 +69,7 @@ export default class Stopwatch extends Component {
   render() {
     return (
       <div className="stopwatch">
+      <h3 className="stopwatch-timer">{this.state.periods[this.state.period]} period</h3>
         <h1 className="stopwatch-timer">{formattedSeconds(this.state.secondsElapsed)}</h1>
 
         {(this.state.secondsElapsed === 0 ||
@@ -59,7 +80,7 @@ export default class Stopwatch extends Component {
 
         {(this.state.secondsElapsed !== 0 &&
           this.incrementer !== this.state.lastClearedIncrementer
-          ? <Button onClick={this.handleLabClick.bind(this)}>lab</Button>
+          ? <Button onClick={this.handleLapClick.bind(this)}>lap</Button>
           : null
         )}
 
@@ -79,17 +100,3 @@ export default class Stopwatch extends Component {
     );
   }
 }
-
-/** verbose component before 0.14
-class Button extends React.Component {
-  render() {
-    return <button type="button" {...this.props}
-                   className={"btn " + this.props.className } />;
-  }
-}
-*/
-
-const Button = (props) =>
-  <button type="button" {...props} className={"btn " + props.className } />;
-
-// React.render(<Stopwatch />, document.body);
