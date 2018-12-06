@@ -105,13 +105,14 @@ export default (state = initialState, action) => {
       }
 
     case SUBMIT_ATHLETE:
-      // let currentAthlete = new Athlete(state.newAthlete)
-      let currentAthlete = new Athlete({
-        name: 'Jeffry Slater',
-        school: 'LuHi',
-        grade: 'Graduate',
-        weights: [['160', 'Oct 11'], ['158', 'Oct 18'], ['155', 'Oct 25']]
-      })
+      console.log(this.state.newAthlete);
+      let currentAthlete = new Athlete(state.newAthlete)
+      // let currentAthlete = new Athlete({
+      //   name: 'Jeffry Slater',
+      //   school: 'LuHi',
+      //   grade: 'Graduate',
+      //   weights: [['160', 'Oct 11'], ['158', 'Oct 18'], ['155', 'Oct 25']]
+      // })
       return {
         ...state,
         currentAthlete: currentAthlete,

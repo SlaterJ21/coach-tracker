@@ -11,11 +11,11 @@ export default class Stopwatch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      secondsElapsed: 0,
+      secondsElapsed: 5,
       laps: [],
       lastClearedIncrementer: null,
       periods: ['First', 'Second', 'Third', 'OT 1', 'OT 2'],
-      periodLengths: [120, 120, 120, 60, 60],
+      periodLengths: [5, 5, 5, 3, 3],
       period: 0
     };
     this.incrementer = null;
@@ -24,12 +24,12 @@ export default class Stopwatch extends Component {
 //make timer reset after 120 seconds increment counter to increase period!
 
   nextPeriod() {
-    if (this.state.secondsElapsed === this.state.periodLengths[this.state.period]) {
+    if (this.state.secondsElapsed === 0) {
       clearInterval(this.incrementer);
       this.setState({
         lastClearedIncrementer: this.incrementer,
-        secondsElapsed: 0,
-        period: this.state.period + 1
+        period: this.state.period + 1,
+        secondsElapsed: this.state.periodLengths[this.state.period + 1]
       })
     }
   }
@@ -38,7 +38,7 @@ export default class Stopwatch extends Component {
   handleStartClick() {
     this.incrementer = setInterval( () =>
         this.setState({
-          secondsElapsed: this.state.secondsElapsed + 1
+          secondsElapsed: this.state.secondsElapsed - 1
         })
       , 1000);
     setInterval(() => this.nextPeriod(), 1000)
@@ -55,7 +55,7 @@ export default class Stopwatch extends Component {
   handleResetClick() {
     clearInterval(this.incrementer);
     this.setState({
-      secondsElapsed: 0,
+      secondsElapsed: this.state.periodLengths[this.state.period],
       laps: []
     });
   }

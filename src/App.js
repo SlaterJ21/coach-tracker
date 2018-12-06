@@ -35,6 +35,7 @@ viewHash = () => {
     return (
       <Row className="app">
         <Page/>
+        <WrestlerTable/>
         { this.viewHash() }
       </Row>
     );
